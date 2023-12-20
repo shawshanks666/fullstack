@@ -3,7 +3,8 @@ import Numbers from './components/numbers'
 import Form from './components/form'
 import axios from 'axios'
 import personServices from './services/person'
-
+import Notif from './components/addedNotif'
+import './styles.css'
 
 const App = () => {
   // const [persons, setPersons] = useState([
@@ -15,6 +16,7 @@ const App = () => {
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
+  const [added, setAdded]= useState('false')
   
   useEffect(() => {
     personServices.getAll()
@@ -26,6 +28,8 @@ const App = () => {
 
 
 
+
+ 
 
   const addNote= (e) =>{
     e.preventDefault()
@@ -47,18 +51,24 @@ const App = () => {
     else
     {
     
-    personServices.create (newObject)
+    personServices.create(newObject)
     .then(response => {
+      console.log(123);
       setPersons(persons.concat(response.data))
+      setAdded('true')
+
     })
+
     }
+
   }
 
   return (
     <>
       <h2>Phonebook</h2>
-      <h2>Numbers</h2>
+      <Notif name={newName} added={added} setAdded={setAdded}/>
       <Form addNote={addNote} newName={newName} setNewName={setNewName} newNumber={newNumber} setNewNumber={setNewNumber}></Form>
+      <h2>Numbers</h2>
       <Numbers persons={persons} setPersons={setPersons}></Numbers>
     </>
   )
