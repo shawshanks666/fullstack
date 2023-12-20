@@ -5,7 +5,6 @@
 
     setTimeout( ()=>{
     if(added==='true'){
-      console.log(12113);
       setAdded('false')
     }
   }, 800)

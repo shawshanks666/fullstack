@@ -39,7 +39,7 @@ const App = () => {
     if(duplicateElement)
     {
       console.log(duplicateElement.id);
-      alert(`${newName} has already been added to phonebook`)
+      (`${newName} has already been added to phonebook`)
 
       personServices.update(duplicateElement.id, newObject)
       personServices.getAll()
@@ -53,7 +53,6 @@ const App = () => {
     
     personServices.create(newObject)
     .then(response => {
-      console.log(123);
       setPersons(persons.concat(response.data))
       setAdded('true')
 
